@@ -1,4 +1,8 @@
+import { useTranslation } from '../../i18n';
+
 export function Dashboard() {
+  const { t } = useTranslation();
+
   return (
     <div className="app">
 
@@ -16,7 +20,7 @@ export function Dashboard() {
             <div className="dashboard-right">
 
               <div className="sidebar-card">
-                <h3 className="sidebar-card-title">Title</h3>
+                <h3 className="sidebar-card-title">{t('sidebar.districts')}</h3>
 
                 <div className="district-item">
                   <div className="district-item-left">
@@ -24,17 +28,17 @@ export function Dashboard() {
                     <span className="district-name"></span>
                   </div>
 
-                  <span className="district-processing">Title</span>
+                  <span className="district-processing">{t('sidebar.processing')}</span>
                 </div>
               </div>
 
               <div className="sidebar-card">
-                <h3 className="sidebar-card-title">Category</h3>
+                <h3 className="sidebar-card-title">{t('sidebar.category')}</h3>
                 <p className="category-text">Category</p>
               </div>
 
               <div className="sidebar-card">
-                <h3 className="sidebar-card-title">Workflow</h3>
+                <h3 className="sidebar-card-title">{t('sidebar.workflow')}</h3>
                 <div className="workflow-list">
 
                   <div className="workflow-step">
