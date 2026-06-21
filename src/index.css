@@ -1,50 +1,22 @@
-.app {
-    min-height: 100vh;
-    background: #0b7285;
-    display: flex;
-    flex-direction: column;
+:root {
+    /* Radius */
+    --radius-xl: 20px;
+
+    --transition: 200ms ease;
+
+    /* Glassmorphism */
+    --glass-blur: 20px;
 }
 
-.app-main {
-    flex: 1;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 24px;
-    width: 100%;
-}
+/* ===== Dark Theme (default) ===== */
+[data-theme='dark'] {
+    --bg-primary: #000000;
 
-.dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    animation: slideIn o.3s ease-out;
-}
+    /* Glass backgrounds */
+    --glass-bg: rgba(26, 26, 26, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
 
-.dashboard-stats {}
+    --text-primary: #ffffff;
 
-.dashboard-content {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 20px;
-}
-
-.dashboard-left {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 0; /* Prevent overflow */
-}
-
-.dashboard-right {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* ===== Sidebar Cards ===== */
-.sidebar-card {
-    background: #0b7285;
-    border: 1px;
-    padding: 16px;
-
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
