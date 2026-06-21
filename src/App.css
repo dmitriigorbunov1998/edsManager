@@ -1,0 +1,67 @@
+.app {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.app-main {
+    flex: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px;
+    width: 100%;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: slideIn o.3s ease-out;
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 20px;
+}
+
+.dashboard-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0; /* Prevent overflow */
+}
+
+.dashboard-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ===== Glassmorphism Sidebar Cards ===== */
+.sidebar-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.sidebar-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
