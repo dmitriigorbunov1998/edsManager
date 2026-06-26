@@ -48,6 +48,7 @@
 /* ===== Glassmorphism Sidebar Cards ===== */
 .sidebar-card {
     background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
@@ -64,4 +65,7 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
