@@ -1,4 +1,7 @@
 {
+  "app.title": "EDS Mosreg",
+  "app.subtitle": "VKGO Automation",
+  
   "sidebar.districts": "Active Districts",
   "sidebar.processing": "Processing...",
   "sidebar.category": "Filter Category",

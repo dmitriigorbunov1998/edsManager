@@ -1,10 +1,14 @@
 import { useTranslation } from '../../i18n';
+import { Header } from '../../components/Header/Header';
 
 export function Dashboard() {
   const { t } = useTranslation();
 
   return (
     <div className="app">
+      <Header
+
+      />
 
       <main className="app-main">
 
