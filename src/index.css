@@ -1,4 +1,7 @@
 :root {
+    /* Brand colors */
+    --brand-500: #3b82f6;
+
     /* Radius */
     --radius-xl: 20px;
 
@@ -17,6 +20,9 @@
     --glass-border: rgba(255, 255, 255, 0.08);
 
     --text-primary: #ffffff;
+    --text-muted: #8e8e93;
+
+    --border-primary: rgba(0, 0, 0, 0.08);
 
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
