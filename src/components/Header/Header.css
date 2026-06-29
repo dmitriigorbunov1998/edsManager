@@ -1,0 +1,67 @@
+.header {
+    background-color: var(--glass-bg-heavy);
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all var(--transition);
+}
+
+.header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+/* Logo & Brand */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-600));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-brand);
+    transition: transform var(--transition);
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+.header-logo span {
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.header-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.header-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.2;
+}

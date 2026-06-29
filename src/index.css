@@ -1,6 +1,7 @@
 :root {
     /* Brand colors */
     --brand-500: #3b82f6;
+    --brand-600: #2563eb;
 
     /* Radius */
     --radius-xl: 20px;
@@ -9,6 +10,9 @@
 
     /* Glassmorphism */
     --glass-blur: 20px;
+    --glass-blur-heavy: 40px;
+
+    --shadow-brand: 0 8px 32px rgba(59, 130, 246, 0.3);
 }
 
 /* ===== Dark Theme (default) ===== */
@@ -17,6 +21,7 @@
 
     /* Glass backgrounds */
     --glass-bg: rgba(26, 26, 26, 0.7);
+    --glass-bg-heavy: rgba(26, 26, 26, 0.85);
     --glass-border: rgba(255, 255, 255, 0.08);
 
     --text-primary: #ffffff;
