@@ -18,10 +18,8 @@
     /* Glassmorphism */
     --glass-blur: 20px;
     --glass-blur-heavy: 40px;
-}
 
-/* ===== Dark Theme (default) ===== */
-[data-theme='dark'] {
+    /* Dark Theme */
     --bg-primary: #000000;
 
     /* Glass backgrounds */
@@ -39,25 +37,4 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
     --shadow-brand: 0 8px 32px rgba(59, 130, 246, 0.3);
-}
-
-/* ===== Light Theme ===== */
-[data-theme="light"] {
-    --bg-primary: #f5f5f7;
-
-    /* Glass backgrounds */
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-bg-heavy: rgba(255, 255, 255, 0.85);
-    --glass-bg-light: rgba(255, 255, 255, 0.5);
-    --glass-border: rgba(0, 0, 0, 0.06);
-
-    --text-primary: #1d1d1f;
-    --text-secondary: #3d3d3f;
-    --text-muted: #8e8e93;
-
-    --border-primary: rgba(0, 0, 0, 0.08);
-
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
-    --shadow-brand: 0 8px 32px rgba(59, 130, 246, 0.2);
 }
