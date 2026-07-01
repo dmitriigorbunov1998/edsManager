@@ -38,3 +38,54 @@
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
     --shadow-brand: 0 8px 32px rgba(59, 130, 246, 0.3);
 }
+
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    min-height: 100vh;
+    min-height: 100dvh;
+    transition: background-color var(--transition-slow), color var(--transition);
+    overflow-x: hidden;
+}
+
+/* ===== Animations ===== */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
