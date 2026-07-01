@@ -1,0 +1,9 @@
+{
+  "app.title": "ЕДС МосРег",
+  "app.subtitle": "Автоматизация ВКГО",
+  
+  "sidebar.districts": "Активные районы",
+  "sidebar.processing": "Обработка...",
+  "sidebar.category": "Категория фильтра",
+  "sidebar.workflow": "Алгоритм работы"
+}

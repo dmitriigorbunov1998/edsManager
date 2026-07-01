@@ -1,0 +1,141 @@
+.header {
+    background-color: var(--glass-bg-heavy);
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all var(--transition);
+}
+
+.header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+/* Logo & Brand */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-600));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-brand);
+    transition: transform var(--transition);
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+.header-logo span {
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.header-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.header-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.2;
+}
+
+/* Running Status Indicator */
+.header-status {
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: var(--radius-full);
+    padding: 5px 12px;
+}
+
+.header-status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--brand-400);
+    animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+.header-status-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brand-400);
+}
+
+/* Navigation Tabs */
+.header-center {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--glass-bg-light);
+    border-radius: var(--radius-lg);
+    padding: 4px;
+}
+
+.header-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all var(--transition);
+}
+
+.header-tab:hover {
+    color: var(--text-secondary);
+    background: var(--glass-bg);
+}
+
+.header-tab.active {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Right Controls */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    border-radius: var(--radius-full);
+    background: var(--glass-bg-light);
+}
