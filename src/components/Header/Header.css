@@ -81,6 +81,7 @@
 .header-status-dot {
     width: 6px;
     height: 6px;
+    border-radius: 50%;
     background: var(--brand-400);
     animation: pulseGlow 1.5s ease-in-out infinite;
 }
