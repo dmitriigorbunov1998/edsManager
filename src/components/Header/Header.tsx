@@ -114,7 +114,7 @@ export function Header({activeTab, onTabChange, isRunning}: HeaderProps) {
                     </div>
 
                     <button
-                        className="header-btn"
+                        className="header-btn danger"
                         title="Выйти"
                     >
                         <LogOut size={18} />
