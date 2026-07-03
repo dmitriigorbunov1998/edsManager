@@ -6,14 +6,20 @@
     --brand-400: #60a5fa;
     --brand-500: #3b82f6;
     --brand-600: #2563eb;
+    --brand-700: #1d4ed8;
+
+    /* Status colors */
+    --red-400: #f87171;
 
     /* Radius */
+    --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 20px;
     --radius-full: 9999px;
 
     --transition: 200ms ease;
+    --transition-slow: 400ms ease;
 
     /* Glassmorphism */
     --glass-blur: 20px;
@@ -21,6 +27,9 @@
 
     /* Dark Theme */
     --bg-primary: #000000;
+    --bg-secondary: #1f1c1c;
+    --bg-tertiary: #141414;
+    --bg-card: #1a1a1a;
 
     /* Glass backgrounds */
     --glass-bg: rgba(26, 26, 26, 0.7);
@@ -36,6 +45,7 @@
 
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
     --shadow-brand: 0 8px 32px rgba(59, 130, 246, 0.3);
 }
 
@@ -89,12 +99,21 @@ body {
     }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 @keyframes pulseGlow {
     0%, 100% {
         opacity: 1;
     }
     50% {
-        opacity: 0.4
+        opacity: 0.4;
     }
 }
 
@@ -128,7 +147,7 @@ body {
 }
 
 .animate-slide-up {
-    animation: slideUpp 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    animation: slideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .animate-fade-in {
