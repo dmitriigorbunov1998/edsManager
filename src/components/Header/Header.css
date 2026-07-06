@@ -191,7 +191,6 @@
 /* Subtle border at header bottom */
 .progressive-blur-border {
     position: absolute;
-    bottom: var(--header-blur-extend);
     left: 0;
     right: 0;
     height: 1px;
