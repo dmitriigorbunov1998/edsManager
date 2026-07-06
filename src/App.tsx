@@ -1,14 +1,22 @@
-import { Dashboard } from './pages/Dashboard/Dashboard.tsx';
+import { Suspense, lazy } from 'react';
 import './App.css';
-import { Suspense } from 'react';
+
+const Dashboard = lazy(() =>
+  new Promise<{ default: React.ComponentType<any> }>((resolve) => {
+    setTimeout(() => {
+      import('./pages/Dashboard/Dashboard').then((module) => {
+        resolve({ default: module.Dashboard });
+      });
+    }, 1000);
+  })
+);
 
 function LoadingSpinner() {
-    return (
-        <div className="app-loading">
-            <div className="app-loading-spinner" />
-            <p className="app-loading-text">Загрузка...</p>
-        </div>
-    );
+  return (
+    <div className="app-loading">
+      <div className="app-loading-spinner" />
+    </div>
+  );
 }
 
 function App() {
