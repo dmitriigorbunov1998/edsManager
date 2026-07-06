@@ -1,69 +1,49 @@
-import { useTranslation } from '../../i18n';
+import { useState } from 'react';
 import { Header } from '../../components/Header/Header';
+import { Smartphone, Zap } from 'lucide-react';
+import './Dashboard.css';
 
 export function Dashboard() {
-  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [isMobileView, setIsMobileView] = useState(false);
 
   return (
-    <div className="app">
+    <div className={`app ${isMobileView ? 'is-mobile-view' : ''}`}>
       <Header
-
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        isMobileView={isMobileView}
+        onToggleMobileView={() => setIsMobileView(!isMobileView)}
       />
 
       <main className="app-main">
-
         <div className="dashboard">
+          {/* Hero Banner */}
+          <div className="dashboard-hero">
+            <div>
+              <h1 className="dashboard-hero-title">Добро пожаловать 👋</h1>
+              <p className="dashboard-hero-desc">
+                Прокрутите страницу вниз, чтобы увидеть iOS-style progressive blur на header.
+                А при нажатии кнопки ниже вкладки навигации плавно анимируются во второй ряд без фона с эффектом матового стекла!
+              </p>
+            </div>
+            <div className="dashboard-hero-controls">
+              <button
+                onClick={() => setIsMobileView(!isMobileView)}
+                className={`dashboard-test-btn ${isMobileView ? 'active' : ''}`}
+              >
+                <Smartphone size={16} />
+                {isMobileView ? 'Вернуть десктопный вид' : 'Тест 2-рядного мобильного Header'}
+              </button>
+              <div className="dashboard-status-badge">
+                <Zap size={16} /> Система активна
+              </div>
+            </div>
+          </div>
           <div className="dashboard-stats">
-
-          </div>
-
-          <div className="dashboard-content">
-            <div className="dashboard-left">
-
-            </div>
-            <div className="dashboard-right">
-
-              <div className="sidebar-card">
-                <h3 className="sidebar-card-title">{t('sidebar.districts')}</h3>
-
-                <div className="district-item">
-                  <div className="district-item-left">
-                    <div className="district-dot" />
-                    <span className="district-name"></span>
-                  </div>
-
-                  <span className="district-processing">{t('sidebar.processing')}</span>
-                </div>
-              </div>
-
-              <div className="sidebar-card">
-                <h3 className="sidebar-card-title">{t('sidebar.category')}</h3>
-                <p className="category-text">Category</p>
-              </div>
-
-              <div className="sidebar-card">
-                <h3 className="sidebar-card-title">{t('sidebar.workflow')}</h3>
-                <div className="workflow-list">
-
-                  <div className="workflow-step">
-                    <span className="workflow-num">Number</span>
-                    <span>key</span>
-                  </div>
-
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-
       </main>
-
-      <footer className="app-footer">
-        <div className="app-footer-inner">
-          <span>Title version</span>
-          <span>Tech</span>
-        </div>
-      </footer>
     </div>
   )
 }
