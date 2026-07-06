@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Activity, Settings, Database, Sun, Moon, Monitor, LogOut } from 'lucide-react';
+import { Activity, Settings, Database, Sun, Moon, Monitor, LogOut, Smartphone } from 'lucide-react';
 import { useTranslation } from '../../i18n';
 import { type Theme } from '../../types';
 import './Header.css';
@@ -7,7 +7,9 @@ import './Header.css';
 interface HeaderProps {
     activeTab: string;
     onTabChange: (tab: string) => void;
-    isRunning: boolean;
+    // isRunning: boolean;
+    isMobileView?: boolean;
+    onToggleMobileView?:() => void;
 }
 
 const tabs = [
@@ -22,7 +24,7 @@ const themeOptions: { value: Theme; label: string; icon: typeof Sun }[] = [
     { value: 'system', label: 'Системная', icon: Monitor},
 ];
 
-export function Header({activeTab, onTabChange, isRunning}: HeaderProps) {
+export function Header({activeTab, onTabChange, /* isRunning ,*/ isMobileView, onToggleMobileView}: HeaderProps) {
     const [theme, setTheme] = useState('system');
     const [themeMenuOpen, setThemeMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
@@ -48,79 +50,114 @@ export function Header({activeTab, onTabChange, isRunning}: HeaderProps) {
     }
     
     return (
-        <header className="header">
-            <div className="header-inner">
-                <div className="header-left">
-                    <div className="header-logo">
-                        <span>E</span>
-                    </div>
-                    <div className="header-brand">
-                        <div className="header-title">{t('app.title')}</div>
-                        <div className="header-subtitle">{t('app.subtitle')}</div>
-                    </div>
-                    {/* {isRunning && ( */}
-                        <div className="header-status">
-                        <div className="header-status-dot" />
-                        <span className="header-status-text">Работает</span>
-                    </div>
-                    {/* )} */}
-                </div>
-
-                <nav className="header-center">
-                    {tabs.map(tab => (
-                        <button
-                            key={tab.id}
-                            onClick={() => onTabChange(tab.id)}
-                            className={`header-tab ${activeTab === tab.id ? 'active' : ''}`}
-                        >
-                            <tab.icon size={16} />
-                            {tab.label}
-                        </button>
-                    ))}
-                </nav>
-
-                <div className="header-right">
-                    <div className="header-user">
-                        <div className="header-avatar">ДГ</div>
-                        <span className="header-user-name">Дмитрий Горбунов</span>   
-                    </div>
-
-                    <div className="header-theme-menu" ref={menuRef}>
-                        <button
-                            className="header-btn"
-                            onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-                            title="Сменить тему"
-                        >
-                            <ThemeIcon size={18} />
-                        </button>
-                        
-                        {themeMenuOpen && (
-                            <div className="header-theme-dropdown">
-                                {themeOptions.map(opt => (
-                                    <button
-                                        key={opt.value}
-                                        className={`header-theme-option ${theme === opt.value ? 'active' : ''}`}
-                                        onClick={() => { 
-                                            setTheme(opt.value);
-                                            setThemeMenuOpen(false);
-                                        }}
-                                    >
-                                        <opt.icon size={16} />
-                                        {opt.label}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    <button
-                        className="header-btn danger"
-                        title="Выйти"
-                    >
-                        <LogOut size={18} />
-                    </button>
-                </div>
+        <div className="header-wrapper">
+            {/*
+                Progressive Blur Layers — iOS-style
+                7 stacked layers with increasing blur, each masked to a strip.
+                This creates a smooth blur gradient: strong at top, fading to zero at bottom.
+            */}
+            <div className="progressive-blur">
+                <div className="blur-layer" />
+                <div className="blur-layer" />
+                <div className="blur-layer" />
+                <div className="blur-layer" />
+                <div className="blur-layer" />
+                <div className="blur-layer" />
+                <div className="blur-layer" />
             </div>
-        </header>
+
+            {/* Semi-transparent dark overlay that also fades */}
+            <div  className="progressive-blur-bg" />
+
+            {/* Subtle border at the header bottom */}
+            <div className="progressive-blur-border" />
+            
+            {/* Actual header content */}
+            <header className="header">
+                <div className="header-inner">
+                    <div className="header-left">
+                        <div className="header-logo">
+                            <span>E</span>
+                        </div>
+                        <div className="header-brand">
+                            <div className="header-title">{t('app.title')}</div>
+                            <div className="header-subtitle">{t('app.subtitle')}</div>
+                        </div>
+                        {/* {isRunning && ( */}
+                            <div className="header-status">
+                            <div className="header-status-dot" />
+                            <span className="header-status-text">Работает</span>
+                        </div>
+                        {/* )} */}
+                    </div>
+
+                    {/* Navigation tabs — transforms into Row 2 without background on mobile (< 768px) */}
+                    <nav className="header-center">
+                        {tabs.map(tab => (
+                            <button
+                                key={tab.id}
+                                onClick={() => onTabChange(tab.id)}
+                                className={`header-tab ${activeTab === tab.id ? 'active' : ''}`}
+                            >
+                                <tab.icon size={16} />
+                                {tab.label}
+                            </button>
+                        ))}
+                    </nav>
+
+                    <div className="header-right">
+                        <div className="header-user">
+                            <div className="header-avatar">ДГ</div>
+                            <span className="header-user-name">Дмитрий Горбунов</span>   
+                        </div>
+
+                        {onToggleMobileView && (
+                            <button
+                                className={`header-btn ${isMobileView ? 'active' : ''}`}
+                                onClick={onToggleMobileView}
+                                title={isMobileView ? 'Вернуть десктопный вид': 'Тест 2-рядного мобильного Header'}
+                            >
+                                <Smartphone size={18} />
+                            </button>
+                        )}
+
+                        <div className="header-theme-menu" ref={menuRef}>
+                            <button
+                                className="header-btn"
+                                onClick={() => setThemeMenuOpen(!themeMenuOpen)}
+                                title="Сменить тему"
+                            >
+                                <ThemeIcon size={18} />
+                            </button>
+                            
+                            {themeMenuOpen && (
+                                <div className="header-theme-dropdown">
+                                    {themeOptions.map(opt => (
+                                        <button
+                                            key={opt.value}
+                                            className={`header-theme-option ${theme === opt.value ? 'active' : ''}`}
+                                            onClick={() => { 
+                                                setTheme(opt.value);
+                                                setThemeMenuOpen(false);
+                                            }}
+                                        >
+                                            <opt.icon size={16} />
+                                            {opt.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <button
+                            className="header-btn danger"
+                            title="Выйти"
+                        >
+                            <LogOut size={18} />
+                        </button>
+                    </div>
+                </div>
+            </header>
+        </div>
     )
 }
