@@ -1,11 +1,209 @@
-.header {
-    background-color: var(--glass-bg-heavy);
-    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)); /* Для Safari/iOS */
-    backdrop-filter: blur(var(--glass-blur-heavy)); /* Стандартное свойство */
-    border-bottom: 1px solid var(--glass-border);
+/* ============================================================
+   iOS-style Progressive Blur Header — Plain CSS
+   
+   Contains 7 stacked pseudo-layers with increasing blur and
+   mask-image gradients to create a smooth fade from bottom (0px)
+   to top (48px). On mobile (< 768px), navigation tabs transform
+   into a second row without a solid background, while buttons
+   retain the glassmorphic frosted glass effect.
+   ============================================================ */
+
+.header-wrapper {
     position: sticky;
     top: 0;
     z-index: 100;
+    /* The wrapper extends below the header content to create the fade zone */
+    height: calc(var(--header-height) + var(--header-blur-extend));
+    pointer-events: none; /* allow clicking through the blur-fade zone */
+    transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-wrapper > * {
+    pointer-events: auto;
+}
+
+/* Progressive blur layers container */
+.progressive-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Each blur layer: absolutely positioned, full width & height */
+.progressive-blur .blur-layer {
+    position: absolute;
+    inset: 0;
+}
+
+/* Layer 1: lightest blur (1px), covers bottom fade-in zone */
+.progressive-blur .blur-layer:nth-child(1) {
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 25%,
+        rgba(0, 0, 0, 0) 35%
+    );
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 25%,
+        rgba(0, 0, 0, 0) 35%
+    );
+}
+
+/* Layer 2: 2px blur */
+.progressive-blur .blur-layer:nth-child(2) {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 1) 35%,
+        rgba(0, 0, 0, 0) 45%
+    );
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 1) 35%,
+        rgba(0, 0, 0, 0) 45%
+    );
+}
+
+/* Layer 3: 4px blur */
+.progressive-blur .blur-layer:nth-child(3) {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 20%,
+        rgba(0, 0, 0, 1) 30%,
+        rgba(0, 0, 0, 1) 45%,
+        rgba(0, 0, 0, 0) 55%
+    );
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 20%,
+        rgba(0, 0, 0, 1) 30%,
+        rgba(0, 0, 0, 1) 45%,
+        rgba(0, 0, 0, 0) 55%
+    );
+}
+
+/* Layer 4: 8px blur */
+.progressive-blur .blur-layer:nth-child(4) {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 30%,
+        rgba(0, 0, 0, 1) 40%,
+        rgba(0, 0, 0, 1) 55%,
+        rgba(0, 0, 0, 0) 65%
+    );
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 30%,
+        rgba(0, 0, 0, 1) 40%,
+        rgba(0, 0, 0, 1) 55%,
+        rgba(0, 0, 0, 0) 65%
+    );
+}
+
+/* Layer 5: 16px blur */
+.progressive-blur .blur-layer:nth-child(5) {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 40%,
+        rgba(0, 0, 0, 1) 55%,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(0, 0, 0, 0) 80%
+    );
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 40%,
+        rgba(0, 0, 0, 1) 55%,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(0, 0, 0, 0) 80%
+    );
+}
+
+/* Layer 6: 32px blur */
+.progressive-blur .blur-layer:nth-child(6) {
+    -webkit-backdrop-filter: blur(32px);
+    backdrop-filter: blur(32px);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0) 95%
+    );
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0) 95%
+    );
+}
+
+/* Layer 7: strongest blur (48px), covers top header area */
+.progressive-blur .blur-layer:nth-child(7) {
+    -webkit-backdrop-filter: blur(48px);
+    backdrop-filter: blur(48px);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(0, 0, 0, 1) 85%
+    );
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(0, 0, 0, 1) 85%
+    );
+}
+
+/* Semi-transparent dark background overlay that fades */
+.progressive-blur-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.45) 50%,
+        rgba(0, 0, 0, 0.2) 75%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    pointer-events: none;
+}
+
+/* Subtle border at header bottom */
+.progressive-blur-border {
+    position: absolute;
+    bottom: var(--header-blur-extend);
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-primary);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ===== Header Content ===== */
+.header {
+    position: relative;
+    z-index: 10;
     transition: all var(--transition);
 }
 
@@ -16,7 +214,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: var(--header-height);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Logo & Brand */
@@ -35,6 +234,8 @@
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow-brand);
+    transition: transform var(--transition);
+    cursor: pointer;
 }
 
 .header-logo:hover {
@@ -42,7 +243,7 @@
 }
 
 .header-logo span {
-    color: white;
+    color: #ffffff;
     font-weight: 700;
     font-size: 18px;
 }
@@ -96,9 +297,9 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    background: var(--bg-primary);
-    padding: 2px;
+    padding: 3px;
     border-radius: var(--radius-md);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header-tab {
@@ -106,18 +307,21 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
+    background: transparent;
     border-radius: var(--radius-md);
     font-size: 14px;
     font-weight: 500;
     color: var(--text-muted);
-    transition: all var(--transition);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease;
     outline: none;
     border: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .header-tab:hover {
     color: var(--text-secondary);
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .header-tab.active {
@@ -136,28 +340,29 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 12px;
+    padding: 6px;
     border-radius: var(--radius-md);
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .header-avatar {
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: var(--radius-sm);
     background: linear-gradient(135deg, var(--brand-400), var(--brand-600));
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
     font-weight: 600;
-    color: white;
+    color: #ffffff;
 }
 
 .header-user-name {
     font-size: 14px;
     font-weight: 500;
     color: var(--text-secondary);
+    padding-right: 6px;
 }
 
 .header-theme-menu {
@@ -167,15 +372,26 @@
 .header-btn {
     padding: 8px;
     border-radius: var(--radius-md);
-    /* outline: none;
-    border: none; */
+    background: rgba(255, 255, 255, 0.04);
+    outline: none;
+    border: none;
     color: var(--text-muted);
     transition: all var(--transition);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
 }
 
 .header-btn:hover {
     color: var(--text-secondary);
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.header-btn.active {
+    color: var(--brand-400);
+    background: rgba(59, 130, 246, 0.15);
 }
 
 .header-btn.danger:hover {
@@ -186,6 +402,7 @@
 .header-theme-dropdown {
     position: absolute;
     top: 100%;
+    right: 0;
     margin-top: 8px;
     background: var(--bg-card);
     border: 1px solid var(--border-primary);
@@ -193,8 +410,8 @@
     box-shadow: var(--shadow-lg);
     min-width: 140px;
     padding: 4px;
-    z-index: 100;
-    animation: slideIn 0.2 ease-out;
+    z-index: 200;
+    animation: slideIn 0.2s ease-out;
 }
 
 .header-theme-option {
@@ -206,14 +423,213 @@
     font-size: 14px;
     color: var(--text-secondary);
     border-radius: var(--radius-sm);
+    background: transparent;
+    outline: none;
+    border: none;
     transition: all var(--transition);
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .header-theme-option:hover {
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.06);
 }
 
-.header-theme-option:active {
+.header-theme-option.active {
     color: var(--brand-400);
     background: rgba(59, 130, 246, 0.1);
+}
+
+/* ===== Responsive & 2-Row Mobile Header Layout ===== */
+@media (max-width: 1024px) {
+    .header-user-name {
+        display: none;
+    }
+    .header-subtitle {
+        display: none;
+    }
+}
+
+/* Enable 2-row header on mobile screens (< 768px) or when .is-mobile-view toggle is active */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 126px;
+    }
+}
+
+.is-mobile-view {
+    --header-height: 126px !important;
+}
+
+@media (max-width: 768px) {
+    .header-inner {
+        flex-wrap: wrap;
+        height: var(--header-height);
+        padding: 8px 16px 10px;
+        align-content: space-between;
+        gap: 6px 0;
+    }
+
+    .header-left {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .header-right {
+        flex-shrink: 0;
+    }
+
+    .header-subtitle {
+        display: none;
+    }
+
+    /* Second row: acts like a second header row below the first, but WITHOUT background box */
+    .header-center {
+        order: 3;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 0;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Navigation buttons: glassmorphic transparency effect like main header */
+    .header-tab {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px 4px;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        background: var(--glass-bg-heavy);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-md);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        -webkit-backdrop-filter: blur(24px);
+        backdrop-filter: blur(24px);
+        min-height: 50px;
+        color: var(--text-secondary);
+    }
+
+    .header-tab:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .header-tab:active {
+        transform: scale(0.96);
+    }
+
+    .header-tab.active {
+        background: rgba(59, 130, 246, 0.22);
+        border-color: rgba(59, 130, 246, 0.45);
+        color: var(--brand-400);
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+    }
+}
+
+/* Replicate for .is-mobile-view class so desktop users can preview the animated transition */
+.is-mobile-view .header-inner {
+    flex-wrap: wrap;
+    height: var(--header-height);
+    padding: 8px 16px 10px;
+    align-content: space-between;
+    gap: 6px 0;
+}
+
+.is-mobile-view .header-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.is-mobile-view .header-right {
+    flex-shrink: 0;
+}
+
+.is-mobile-view .header-subtitle {
+    display: none;
+}
+
+.is-mobile-view .header-center {
+    order: 3;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-mobile-view .header-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 4px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    background: var(--glass-bg-heavy);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    min-height: 50px;
+    color: var(--text-secondary);
+}
+
+.is-mobile-view .header-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.is-mobile-view .header-tab:active {
+    transform: scale(0.96);
+}
+
+.is-mobile-view .header-tab.active {
+    background: rgba(59, 130, 246, 0.22);
+    border-color: rgba(59, 130, 246, 0.45);
+    color: var(--brand-400);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Extra small devices (< 480px) */
+@media (max-width: 480px) {
+    .header-status-text {
+        display: none;
+    }
+    .header-tab {
+        font-size: 11px;
+        padding: 6px 2px;
+        min-height: 48px;
+    }
+}
+
+.is-mobile-view-sm .header-status-text {
+    display: none;
+}
+
+.is-mobile-view-sm .header-tab {
+    font-size: 11px;
+    padding: 6px 2px;
+    min-height: 48px;
 }
