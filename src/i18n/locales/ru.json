@@ -1,6 +1,6 @@
 {
-  "app.title": "ЕДС МосРег",
-  "app.subtitle": "Автоматизация ВКГО",
+  "app.title": "UDS Manager",
+  "app.subtitle": "Единая диспетчерская служба",
   
   "sidebar.districts": "Активные районы",
   "sidebar.processing": "Обработка...",
