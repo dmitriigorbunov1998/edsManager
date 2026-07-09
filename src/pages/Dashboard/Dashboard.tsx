@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import { Header } from '../../components/Header/Header';
+import { useHeader } from '../../hooks/useHeader';
 import { Zap } from 'lucide-react';
+import type { ComponentProps } from 'react';
 import './Dashboard.css';
 
 export function Dashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const headerProps = useHeader();
+
+  const headerComponentProps: ComponentProps<typeof Header> = {
+    ...headerProps,
+    activeTab,
+    onTabChange: setActiveTab,
+  };
 
   return (
     <div className="app">
-      <Header
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-      />
+      <Header {...headerComponentProps} />
 
       <main className="app-main">
         <div className="dashboard">
