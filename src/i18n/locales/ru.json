@@ -1,9 +1,22 @@
 {
   "app.title": "UDS Manager",
   "app.subtitle": "Единая диспетчерская служба",
+
+  "status.title": "Работает",
+
+  "nav.dashboard": "Панель управления",
+  "nav.settings": "Настройки",
+  "nav.database": "База данных",
   
   "sidebar.districts": "Активные районы",
   "sidebar.processing": "Обработка...",
   "sidebar.category": "Категория фильтра",
-  "sidebar.workflow": "Алгоритм работы"
+  "sidebar.workflow": "Алгоритм работы",
+
+  "theme.select": "Сменить тему",
+  "theme.light": "Светлая",
+  "theme.dark": "Тёмная",
+  "theme.system": "Системная",
+
+  "logout.title": "Выйти"
 }

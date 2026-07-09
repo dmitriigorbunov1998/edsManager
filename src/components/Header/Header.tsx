@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { Activity, Settings, Database, Sun, Moon, Monitor, LogOut, Globe } from 'lucide-react';
 import { useTranslation } from '../../i18n';
 import { type Theme } from '../../types';
@@ -9,23 +9,23 @@ interface HeaderProps {
     onTabChange: (tab: string) => void;
 }
 
-const tabs = [
-    { id: 'dashboard', label: 'Панель управления', icon: Activity },
-    { id: 'config', label: 'Настройки', icon: Settings },
-    { id: 'database', label: 'База данных', icon: Database },
-];
-
-const themeOptions: { value: Theme; label: string; icon: typeof Sun }[] = [
-    { value: 'light', label: 'Светлая', icon: Sun },
-    { value: 'dark', label: 'Тёмная', icon: Moon },
-    { value: 'system', label: 'Системная', icon: Monitor},
-];
-
 export function Header({ activeTab, onTabChange }: HeaderProps) {
     const [theme, setTheme] = useState('system');
     const [themeMenuOpen, setThemeMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const { t, lang, setLang } = useTranslation();
+
+    const tabs = useMemo(() => [
+        { id: 'dashboard', label: t('nav.dashboard'), title: t('nav.dashboard'), icon: Activity },
+        { id: 'config', label: t('nav.settings'), title: t('nav.settings'), icon: Settings },
+        { id: 'database', label: t('nav.database'), title: t('nav.settings'), icon: Database },
+    ], [t]);
+
+    const themeOptions: { value: Theme; label: string; icon: typeof Sun }[] = [
+        { value: 'light', label: t('theme.light'), icon: Sun },
+        { value: 'dark', label: t('theme.dark'), icon: Moon },
+        { value: 'system', label: t('theme.system'), icon: Monitor},
+    ];
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -73,7 +73,7 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
                         {/* {isRunning && ( */}
                             <div className="header-status">
                             <div className="header-status-dot" />
-                            <span className="header-status-text">Работает</span>
+                            <span className="header-status-text">{t('status.title')}</span>
                         </div>
                         {/* )} */}
                     </div>
@@ -85,6 +85,7 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
                                 key={tab.id}
                                 onClick={() => onTabChange(tab.id)}
                                 className={`header-tab ${activeTab === tab.id ? 'active' : ''}`}
+                                title={tab.title}
                             >
                                 <tab.icon size={16} />
                                 {tab.label}
@@ -113,7 +114,7 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
                             <button
                                 className="header-btn"
                                 onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-                                title="Сменить тему"
+                                title={t('theme.select')}
                             >
                                 <ThemeIcon size={18} />
                             </button>
@@ -139,7 +140,7 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
 
                         <button
                             className="header-btn danger"
-                            title="Выйти"
+                            title={t('logout.title')}
                         >
                             <LogOut size={18} />
                         </button>
