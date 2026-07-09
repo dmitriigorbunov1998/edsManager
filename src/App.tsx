@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react';
 import './App.css';
 
 const Dashboard = lazy(() =>
-  new Promise<{ default: React.ComponentType<any> }>((resolve) => {
+  new Promise<{ default: React.ComponentType }>((resolve) => {
     setTimeout(() => {
       import('./pages/Dashboard/Dashboard').then((module) => {
         resolve({ default: module.Dashboard });
