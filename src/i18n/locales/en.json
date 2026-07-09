@@ -2,8 +2,16 @@
   "app.title": "UDS Manager",
   "app.subtitle": "Unified dispatch service",
   
-  "sidebar.districts": "Active Districts",
-  "sidebar.processing": "Processing...",
-  "sidebar.category": "Filter Category",
-  "sidebar.workflow": "Workflow"
+  "status.title": "Worked",
+
+  "nav.dashboard": "Dashboard",
+  "nav.settings": "Settings",
+  "nav.database": "Database",
+
+  "theme.select": "Select a theme",
+  "theme.light": "Light",
+  "theme.dark": "Dark",
+  "theme.system": "System",
+
+  "logout.title": "Exit"
 }
