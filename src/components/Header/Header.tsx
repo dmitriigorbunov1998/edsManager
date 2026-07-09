@@ -1,55 +1,49 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
-import { Activity, Settings, Database, Sun, Moon, Monitor, LogOut, Globe } from 'lucide-react';
-import { useTranslation } from '../../i18n';
-import { type Theme } from '../../types';
+import { Globe, LogOut } from 'lucide-react';
+import type { Tab } from '../../hooks/useTabs';
+import type { ThemeOptionWithLabel } from '../../hooks/useTheme';
+import type { LucideIcon } from 'lucide-react';
 import './Header.css';
+import type { Theme } from '../../types';
 
 interface HeaderProps {
+    /* Данные */
     activeTab: string;
+    tabs: Tab[];
+    themeOptions: ThemeOptionWithLabel[];
+    ThemeIcon: LucideIcon;
+
+    /* Состояние */
+    theme: string;
+    themeMenuOpen: boolean;
+    lang: string;
+    /* Refs */
+    menuRef: React.RefObject<HTMLDivElement | null>;
+
+    /* Действия */
     onTabChange: (tab: string) => void;
+    onToggleLang: () => void;
+    onToggleThemeMenu: () => void;
+    onSelectTheme: (theme: Theme) => void;
+
+    /* Переводы */
+    t: (key: string) => string;
 }
 
-export function Header({ activeTab, onTabChange }: HeaderProps) {
-    const [theme, setTheme] = useState('system');
-    const [themeMenuOpen, setThemeMenuOpen] = useState(false);
-    const menuRef = useRef<HTMLDivElement>(null);
-    const { t, lang, setLang } = useTranslation();
-
-    const tabs = useMemo(() => [
-        { id: 'dashboard', label: t('nav.dashboard'), title: t('nav.dashboard'), icon: Activity },
-        { id: 'config', label: t('nav.settings'), title: t('nav.settings'), icon: Settings },
-        { id: 'database', label: t('nav.database'), title: t('nav.settings'), icon: Database },
-    ], [t]);
-
-    const themeOptions: { value: Theme; label: string; icon: typeof Sun }[] = [
-        { value: 'light', label: t('theme.light'), icon: Sun },
-        { value: 'dark', label: t('theme.dark'), icon: Moon },
-        { value: 'system', label: t('theme.system'), icon: Monitor},
-    ];
-
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-                setThemeMenuOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    let ThemeIcon;
-    if (theme === 'system') {
-        ThemeIcon = Monitor;
-    } else if (theme === 'dark') {
-        ThemeIcon = Moon;
-    } else {
-        ThemeIcon = Sun;
-    }
-
-    const toggleLang = () => {
-        setLang(lang === 'ru' ? 'en' : 'ru');
-    }
-    
+export function Header({
+    activeTab,
+    tabs,
+    themeOptions,
+    ThemeIcon,
+    theme,
+    themeMenuOpen,
+    lang,
+    menuRef,
+    onTabChange,
+    onToggleLang,
+    onToggleThemeMenu,
+    onSelectTheme,
+    t,
+}: HeaderProps) {    
     return (
         <div className="header-wrapper">
 
@@ -70,12 +64,10 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
                             <div className="header-title">{t('app.title')}</div>
                             <div className="header-subtitle">{t('app.subtitle')}</div>
                         </div>
-                        {/* {isRunning && ( */}
                             <div className="header-status">
                             <div className="header-status-dot" />
                             <span className="header-status-text">{t('status.title')}</span>
                         </div>
-                        {/* )} */}
                     </div>
 
                     {/* Navigation tabs — transforms into Row 2 without background on mobile (< 768px) */}
@@ -101,7 +93,7 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
                         
                         <button
                             className="header-btn"
-                            onClick={toggleLang}
+                            onClick={onToggleLang}
                             title={t('lang.toggle')}
                         >
                             <Globe size={18} />
@@ -113,7 +105,7 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
                         <div className="header-theme-menu" ref={menuRef}>
                             <button
                                 className="header-btn"
-                                onClick={() => setThemeMenuOpen(!themeMenuOpen)}
+                                onClick={onToggleThemeMenu}
                                 title={t('theme.select')}
                             >
                                 <ThemeIcon size={18} />
@@ -125,10 +117,7 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
                                         <button
                                             key={opt.value}
                                             className={`header-theme-option ${theme === opt.value ? 'active' : ''}`}
-                                            onClick={() => { 
-                                                setTheme(opt.value);
-                                                setThemeMenuOpen(false);
-                                            }}
+                                            onClick={() => onSelectTheme(opt.value)}
                                         >
                                             <opt.icon size={16} />
                                             {opt.label}
