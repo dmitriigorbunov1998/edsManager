@@ -1,19 +1,16 @@
 import { useState } from 'react';
 import { Header } from '../../components/Header/Header';
-import { Smartphone, Zap } from 'lucide-react';
+import { Zap } from 'lucide-react';
 import './Dashboard.css';
 
 export function Dashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [isMobileView, setIsMobileView] = useState(false);
 
   return (
-    <div className={`app ${isMobileView ? 'is-mobile-view' : ''}`}>
+    <div className="app">
       <Header
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        isMobileView={isMobileView}
-        onToggleMobileView={() => setIsMobileView(!isMobileView)}
       />
 
       <main className="app-main">
@@ -28,13 +25,6 @@ export function Dashboard() {
               </p>
             </div>
             <div className="dashboard-hero-controls">
-              <button
-                onClick={() => setIsMobileView(!isMobileView)}
-                className={`dashboard-test-btn ${isMobileView ? 'active' : ''}`}
-              >
-                <Smartphone size={16} />
-                {isMobileView ? 'Вернуть десктопный вид' : 'Тест 2-рядного мобильного Header'}
-              </button>
               <div className="dashboard-status-badge">
                 <Zap size={16} /> Система активна
               </div>

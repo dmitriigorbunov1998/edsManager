@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Activity, Settings, Database, Sun, Moon, Monitor, LogOut, Smartphone } from 'lucide-react';
+import { Activity, Settings, Database, Sun, Moon, Monitor, LogOut, Globe } from 'lucide-react';
 import { useTranslation } from '../../i18n';
 import { type Theme } from '../../types';
 import './Header.css';
@@ -7,9 +7,6 @@ import './Header.css';
 interface HeaderProps {
     activeTab: string;
     onTabChange: (tab: string) => void;
-    // isRunning: boolean;
-    isMobileView?: boolean;
-    onToggleMobileView?:() => void;
 }
 
 const tabs = [
@@ -24,11 +21,11 @@ const themeOptions: { value: Theme; label: string; icon: typeof Sun }[] = [
     { value: 'system', label: 'Системная', icon: Monitor},
 ];
 
-export function Header({activeTab, onTabChange, /* isRunning ,*/ isMobileView, onToggleMobileView}: HeaderProps) {
+export function Header({ activeTab, onTabChange }: HeaderProps) {
     const [theme, setTheme] = useState('system');
     const [themeMenuOpen, setThemeMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
-    const { t } = useTranslation();
+    const { t, lang, setLang } = useTranslation();
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -48,23 +45,13 @@ export function Header({activeTab, onTabChange, /* isRunning ,*/ isMobileView, o
     } else {
         ThemeIcon = Sun;
     }
+
+    const toggleLang = () => {
+        setLang(lang === 'ru' ? 'en' : 'ru');
+    }
     
     return (
         <div className="header-wrapper">
-            {/*
-                Progressive Blur Layers — iOS-style
-                7 stacked layers with increasing blur, each masked to a strip.
-                This creates a smooth blur gradient: strong at top, fading to zero at bottom.
-            */}
-            <div className="progressive-blur">
-                <div className="blur-layer" />
-                <div className="blur-layer" />
-                <div className="blur-layer" />
-                <div className="blur-layer" />
-                <div className="blur-layer" />
-                <div className="blur-layer" />
-                <div className="blur-layer" />
-            </div>
 
             {/* Semi-transparent dark overlay that also fades */}
             <div  className="progressive-blur-bg" />
@@ -110,16 +97,17 @@ export function Header({activeTab, onTabChange, /* isRunning ,*/ isMobileView, o
                             <div className="header-avatar">ДГ</div>
                             <span className="header-user-name">Дмитрий Горбунов</span>   
                         </div>
-
-                        {onToggleMobileView && (
-                            <button
-                                className={`header-btn ${isMobileView ? 'active' : ''}`}
-                                onClick={onToggleMobileView}
-                                title={isMobileView ? 'Вернуть десктопный вид': 'Тест 2-рядного мобильного Header'}
-                            >
-                                <Smartphone size={18} />
-                            </button>
-                        )}
+                        
+                        <button
+                            className="header-btn"
+                            onClick={toggleLang}
+                            title={t('lang.toggle')}
+                        >
+                            <Globe size={18} />
+                            <span>
+                                {lang === "ru" ? 'RU' : 'EN'}
+                            </span>
+                        </button>
 
                         <div className="header-theme-menu" ref={menuRef}>
                             <button
