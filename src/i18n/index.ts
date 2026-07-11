@@ -8,7 +8,6 @@ import ru from './locales/ru.json';
 import en from './locales/en.json';
 
 export type Language = 'ru' | 'en';
-export type TranslationKey = keyof typeof ru;
 
 const translations: Record<Language, Record<string, string>> = {
   ru,
@@ -44,7 +43,6 @@ export function t(key: string, params?: Record<string, string | number>): string
   );
 }
 
-// React hook
 import { useState, useEffect, useCallback } from 'react';
 
 export function useTranslation() {
@@ -61,7 +59,7 @@ export function useTranslation() {
 
   const translate = useCallback((key: string, params?: Record<string, string | number>) => {
     return t(key, params);
-  }, [lang]);
+  }, []);
 
   return {
     t: translate,
