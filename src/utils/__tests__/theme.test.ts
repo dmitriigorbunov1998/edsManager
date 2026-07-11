@@ -1,6 +1,7 @@
 import { getThemeIcon, getDefaultTheme, THEME_OPTIONS } from '../theme';
 import { Sun, Moon, Monitor } from 'lucide-react';
 import { beforeEach, describe, expect, it } from 'vitest';
+import type { Theme } from '../../types.ts'; // ← Импортируем тип Theme
 
 describe('Theme Utils', () => {
   beforeEach(() => {
@@ -21,7 +22,7 @@ describe('Theme Utils', () => {
     });
 
     it('should return Monitor for unknown theme', () => {
-      expect(getThemeIcon('unknown' as any)).toBe(Monitor);
+      expect(getThemeIcon('unknown' as Theme)).toBe(Monitor);
     });
   });
 
