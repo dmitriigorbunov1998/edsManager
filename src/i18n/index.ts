@@ -3,7 +3,7 @@
  * i18n — Интернационализация
  * =====================================================
  */
-
+import { useState, useEffect, useCallback } from 'react';
 import ru from './locales/ru.json';
 import en from './locales/en.json';
 
@@ -37,7 +37,7 @@ export function t(
   params?: Record<string, string | number>
 ): string {
   const translation =
-    translations[currentLanguage][key] || translations['ru'][key] || key;
+    translations[currentLanguage]?.[key] || translations['ru'][key] || key;
 
   if (!params) return translation;
 
@@ -46,8 +46,6 @@ export function t(
     translation
   );
 }
-
-import { useState, useEffect, useCallback } from 'react';
 
 export function useTranslation() {
   const [lang, setLang] = useState<Language>(getLanguage);
@@ -61,15 +59,8 @@ export function useTranslation() {
     setLang(newLang);
   }, []);
 
-  const translate = useCallback(
-    (key: string, params?: Record<string, string | number>) => {
-      return t(key, params);
-    },
-    []
-  );
-
   return {
-    t: translate,
+    t,
     lang,
     setLang: changeLanguage,
     isRu: lang === 'ru',

@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { Activity, Settings, Database } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import type { LucideIcon } from 'lucide-react';
@@ -25,16 +24,12 @@ const TAB_CONFIGS: TabConfig[] = [
 export function useTabs() {
   const { t } = useTranslation();
 
-  const tabs: Tab[] = useMemo(
-    () =>
-      TAB_CONFIGS.map((config) => ({
-        id: config.id,
-        label: t(config.labelKey),
-        title: t(config.labelKey),
-        icon: config.icon,
-      })),
-    [t]
-  );
+  const tabs: Tab[] = TAB_CONFIGS.map((config) => ({
+    id: config.id,
+    label: t(config.labelKey),
+    title: t(config.labelKey),
+    icon: config.icon,
+  }));
 
   return { tabs };
 }

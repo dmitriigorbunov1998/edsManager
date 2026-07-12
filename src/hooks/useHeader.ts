@@ -17,16 +17,11 @@ export function useHeader() {
 
   useClickOutside(menuRef, () => setThemeMenuOpen(false));
 
-  // Опции темы с переводами
-  const themeOptions = useMemo(
-    () =>
-      THEME_OPTIONS.map((opt) => ({
-        value: opt.value,
-        label: t(opt.labelKey),
-        icon: opt.icon,
-      })),
-    [t]
-  );
+  const themeOptions = THEME_OPTIONS.map((opt) => ({
+    value: opt.value,
+    label: t(opt.labelKey),
+    icon: opt.icon,
+  }));
 
   // Иконка текущей темы
   const ThemeIcon = useMemo(() => {
