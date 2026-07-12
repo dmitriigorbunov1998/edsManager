@@ -53,7 +53,9 @@ describe('Header Component', () => {
   });
 
   it('should highlight active tab', () => {
-    const { rerender } = render(<Header {...mockProps} activeTab="dashboard" />);
+    const { rerender } = render(
+      <Header {...mockProps} activeTab="dashboard" />
+    );
     const dashboardTab = screen.getByText('Dashboard').closest('button');
     expect(dashboardTab).toHaveClass('active');
 

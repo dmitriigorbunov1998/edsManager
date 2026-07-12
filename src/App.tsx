@@ -1,14 +1,15 @@
 import { Suspense, lazy } from 'react';
 import './App.css';
 
-const Dashboard = lazy(() =>
-  new Promise<{ default: React.ComponentType }>((resolve) => {
-    setTimeout(() => {
-      import('./pages/Dashboard/Dashboard').then((module) => {
-        resolve({ default: module.Dashboard });
-      });
-    }, 1000);
-  })
+const Dashboard = lazy(
+  () =>
+    new Promise<{ default: React.ComponentType }>((resolve) => {
+      setTimeout(() => {
+        import('./pages/Dashboard/Dashboard').then((module) => {
+          resolve({ default: module.Dashboard });
+        });
+      }, 1000);
+    })
 );
 
 function LoadingSpinner() {
