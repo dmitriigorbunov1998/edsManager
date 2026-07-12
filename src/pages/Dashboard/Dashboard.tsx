@@ -26,8 +26,10 @@ export function Dashboard() {
             <div>
               <h1 className="dashboard-hero-title">Добро пожаловать 👋</h1>
               <p className="dashboard-hero-desc">
-                Прокрутите страницу вниз, чтобы увидеть iOS-style progressive blur на header.
-                А при нажатии кнопки ниже вкладки навигации плавно анимируются во второй ряд без фона с эффектом матового стекла!
+                Прокрутите страницу вниз, чтобы увидеть iOS-style progressive
+                blur на header. А при нажатии кнопки ниже вкладки навигации
+                плавно анимируются во второй ряд без фона с эффектом матового
+                стекла!
               </p>
             </div>
             <div className="dashboard-hero-controls">
@@ -36,10 +38,9 @@ export function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="dashboard-stats">
-          </div>
+          <div className="dashboard-stats"></div>
         </div>
       </main>
     </div>
-  )
+  );
 }

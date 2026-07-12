@@ -43,5 +43,5 @@ describe('useTabs', () => {
 
     expect(result.current.tabs[0].label).toBe('Dashboard');
     expect(result.current.tabs[1].label).toBe('Settings');
-  })
-})
+  });
+});
