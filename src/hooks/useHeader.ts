@@ -1,44 +1,67 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useMemo } from 'react';
+import { Sun, Moon, Monitor } from 'lucide-react';
 import { useTranslation } from '../i18n';
-import { useTheme } from './useTheme';
+import { THEME_OPTIONS } from '../utils/theme.ts';
+import { useTheme } from './useTheme.ts';
 import { useTabs } from './useTabs';
 import { useClickOutside } from './useClickOutside';
 import type { Theme } from '../types';
 
 export function useHeader() {
-    const { t, lang, setLang } = useTranslation();
-    const { theme, ThemeIcon, themeOptions, setTheme } = useTheme();
-    const { tabs } = useTabs();
+  const { t, lang, setLang } = useTranslation();
+  const { theme, setTheme } = useTheme();
+  const { tabs } = useTabs();
 
-    const [themeMenuOpen, setThemeMenuOpen] = useState(false);
-    const menuRef = useRef<HTMLDivElement>(null);
+  const [themeMenuOpen, setThemeMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-    useClickOutside(menuRef, () => setThemeMenuOpen(false));
+  useClickOutside(menuRef, () => setThemeMenuOpen(false));
 
-    const onToggleLang = useCallback(() => {
-        setLang(lang === 'ru' ? 'en' : 'ru');
-    }, [lang, setLang]);
+  // Опции темы с переводами
+  const themeOptions = useMemo(
+    () =>
+      THEME_OPTIONS.map((opt) => ({
+        value: opt.value,
+        label: t(opt.labelKey),
+        icon: opt.icon,
+      })),
+    [t]
+  );
 
-    const onToggleThemeMenu = useCallback(() => {
-        setThemeMenuOpen(prev => !prev);
-    }, []);
+  // Иконка текущей темы
+  const ThemeIcon = useMemo(() => {
+    if (theme === 'system') return Monitor;
+    if (theme === 'dark') return Moon;
+    return Sun;
+  }, [theme]);
 
-    const onSelectTheme = useCallback((newTheme: Theme) => {
-        setTheme(newTheme);
-        setThemeMenuOpen(false);
-    }, [setTheme]);
+  const onToggleLang = useCallback(() => {
+    setLang(lang === 'ru' ? 'en' : 'ru');
+  }, [lang, setLang]);
 
-    return {
-        theme,
-        themeMenuOpen,
-        menuRef,
-        tabs,
-        themeOptions,
-        ThemeIcon,
-        t,
-        lang,
-        onToggleLang,
-        onToggleThemeMenu,
-        onSelectTheme,
-    };
+  const onToggleThemeMenu = useCallback(() => {
+    setThemeMenuOpen((prev) => !prev);
+  }, []);
+
+  const onSelectTheme = useCallback(
+    (newTheme: Theme) => {
+      setTheme(newTheme);
+      setThemeMenuOpen(false);
+    },
+    [setTheme]
+  );
+
+  return {
+    theme,
+    themeMenuOpen,
+    menuRef,
+    tabs,
+    themeOptions,
+    ThemeIcon,
+    t,
+    lang,
+    onToggleLang,
+    onToggleThemeMenu,
+    onSelectTheme,
+  };
 }

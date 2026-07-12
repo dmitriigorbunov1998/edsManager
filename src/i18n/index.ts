@@ -32,8 +32,12 @@ export function getLanguage(): Language {
   return currentLanguage;
 }
 
-export function t(key: string, params?: Record<string, string | number>): string {
-  const translation = translations[currentLanguage][key] || translations['ru'][key] || key;
+export function t(
+  key: string,
+  params?: Record<string, string | number>
+): string {
+  const translation =
+    translations[currentLanguage][key] || translations['ru'][key] || key;
 
   if (!params) return translation;
 
@@ -57,9 +61,12 @@ export function useTranslation() {
     setLang(newLang);
   }, []);
 
-  const translate = useCallback((key: string, params?: Record<string, string | number>) => {
-    return t(key, params);
-  }, []);
+  const translate = useCallback(
+    (key: string, params?: Record<string, string | number>) => {
+      return t(key, params);
+    },
+    []
+  );
 
   return {
     t: translate,
