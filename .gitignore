@@ -1,9 +1,9 @@
 # Dependencies
-node_modules
+node_modules/
 
 # Build
-dist
-dist-ssr
+dist/
+dist-ssr/
 
 # Environment
 .env
@@ -31,7 +31,12 @@ pnpm-debug.log*
 
 # Playwright
 playwright-report/
+playwright-report.results.json
 test-results/
+
+# Testing
+coverage/
+t
 
 # Supabase
 supabase/.branches/
@@ -40,3 +45,6 @@ supabase/.temp/
 # Database
 *.db
 *.sqlite
+
+# TypeScript
+*.tsbuildinfo
