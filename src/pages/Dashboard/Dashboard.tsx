@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import { Header } from '../../components/Header/Header';
 import { useHeader } from '../../hooks/useHeader';
-import { Zap } from 'lucide-react';
+import {
+  AlertTriangle,
+  CheckCircle2,
+  Clock,
+  ListChecks,
+  XCircle,
+  Zap,
+} from 'lucide-react';
 import type { ComponentProps } from 'react';
 import './Dashboard.css';
+import { StatsCard } from '../../components/StatsCard/StatsCard';
+import { useTranslation } from '../../i18n';
 
 export function Dashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const headerProps = useHeader();
+  const { t } = useTranslation();
 
   const headerComponentProps: ComponentProps<typeof Header> = {
     ...headerProps,
@@ -38,7 +48,33 @@ export function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="dashboard-stats"></div>
+          <div className="dashboard-stats">
+            <StatsCard
+              title={t('dashboard.stats.total')}
+              icon={<ListChecks size={20} />}
+              color="blue"
+            />
+            <StatsCard
+              title={t('dashboard.stats.success')}
+              icon={<CheckCircle2 />}
+              color="green"
+            />
+            <StatsCard
+              title={t('dashboard.stats.skipped')}
+              icon={<AlertTriangle />}
+              color="yellow"
+            />
+            <StatsCard
+              title={t('dashboard.stats.errors')}
+              icon={<XCircle />}
+              color="red"
+            />
+            <StatsCard
+              title={t('dashboard.stats.session')}
+              icon={<Clock />}
+              color="cyan"
+            />
+          </div>
         </div>
       </main>
     </div>

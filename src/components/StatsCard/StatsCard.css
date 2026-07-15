@@ -1,0 +1,88 @@
+.stats-card {
+  position: relative;
+  background: var(--stats-card-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  cursor: default;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  color: inherit;
+}
+
+.stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stats-card:active {
+  transform: scale(0.98);
+}
+
+/* Цветной левый border — единственное, что меняется по вариантам */
+.stats-card.blue {
+  border-left: 3px solid var(--color-blue-icon);
+}
+.stats-card.green {
+  border-left: 3px solid var(--color-green-icon);
+}
+.stats-card.yellow {
+  border-left: 3px solid var(--color-yellow-icon);
+}
+.stats-card.red {
+  border-left: 3px solid var(--color-red-icon);
+}
+.stats-card.cyan {
+  border-left: 3px solid var(--color-cyan-icon);
+}
+
+/* Glow — использует data-color атрибут или можно через CSS-переменные */
+.stats-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: readial-gradient(
+    circle at center,
+    var(--starts-card-glow, transparent) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.stats-card:hover::after {
+  opacity: 0.15;
+}
+
+.stats-card.blue {
+  --stats-card-glow: var(--color-blue-glow);
+}
+.stats-card.green {
+  --stats-card-glow: var(--color-green-glow);
+}
+.stats-card.yellow {
+  --stats-card-glow: var(--color-yellow-glow);
+}
+.stats-card.red {
+  --stats-card-glow: var(--color-red-glow);
+}
+.stats-card.cyan {
+  --stats-card-glow: var(--color-cyan-glow);
+}
+
+/* Top Row */
+.stats-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}

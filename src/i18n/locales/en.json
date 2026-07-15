@@ -1,17 +1,67 @@
 {
   "app.title": "UDS Manager",
-  "app.subtitle": "Unified dispatch service",
+  "app.subtitle": "Unified Dispatch Service",
+  "app.version": "v1.0.0",
 
-  "status.title": "Worked",
+  "status.title": "Running",
+  "status.idle": "Idle",
 
   "nav.dashboard": "Dashboard",
   "nav.settings": "Settings",
   "nav.database": "Database",
 
-  "theme.select": "Select a theme",
+  "sidebar.districts": "Active Districts",
+  "sidebar.processing": "Processing...",
+  "sidebar.category": "Filter Category",
+  "sidebar.workflow": "Workflow",
+
+  "theme.select": "Select Theme",
   "theme.light": "Light",
   "theme.dark": "Dark",
   "theme.system": "System",
 
-  "logout.title": "Exit"
+  "lang.toggle": "Toggle Language",
+  "logout.title": "Logout",
+
+  "dashboard.stats.total": "Total Tasks",
+  "dashboard.stats.success": "Success",
+  "dashboard.stats.skipped": "Skipped",
+  "dashboard.stats.errors": "Errors",
+  "dashboard.stats.session": "Current Session",
+  "dashboard.stats.runs": "For {count} runs",
+  "dashboard.stats.noDataUK": "No UK data",
+  "dashboard.stats.waiting": "Waiting",
+  "dashboard.stats.of": "of {total}",
+
+  "script.start": "Start Script",
+  "script.stop": "Stop",
+  "script.pause": "Pause",
+  "script.resume": "Resume",
+  "script.export": "Export",
+  "script.running": "Script is running...",
+
+  "tasks.title": "Processed Tasks",
+  "tasks.empty": "Tasks will appear after script launch",
+  "tasks.filter.all": "All",
+  "tasks.filter.success": "Success",
+  "tasks.filter.skipped": "Skipped",
+  "tasks.filter.errors": "Errors",
+
+  "logs.title": "Execution Logs",
+  "logs.clear": "Clear",
+
+  "config.title": "Script Settings",
+  "config.save": "Save Settings",
+  "config.reset": "Reset",
+  "config.saved": "Saved!",
+
+  "database.title": "Database",
+  "database.stats": "General Statistics",
+  "database.byDistrict": "Statistics by District",
+  "database.reset": "Reset",
+  "database.empty": "Data will appear after first launch",
+  "database.lastRun": "Last Run",
+  "database.noData": "No launch data",
+
+  "footer.tech": "React 19 • TypeScript • Vite"
 }
