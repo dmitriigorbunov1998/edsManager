@@ -61,31 +61,6 @@
   flex-wrap: wrap;
 }
 
-.dashboard-test-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: var(--radius-full);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--brand-400);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.dashboard-test-btn:hover {
-  background: rgba(59, 130, 246, 0.25);
-}
-
-.dashboard-test-btn.active {
-  background: var(--brand-500);
-  color: #ffffff;
-}
-
 .dashboard-status-badge {
   display: flex;
   align-items: center;
@@ -96,4 +71,10 @@
   font-size: 14px;
   font-weight: 600;
   color: var(--brand-400);
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
 }

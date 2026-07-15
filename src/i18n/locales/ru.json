@@ -1,8 +1,10 @@
 {
   "app.title": "UDS Manager",
   "app.subtitle": "Единая диспетчерская служба",
+  "app.version": "v1.0.0",
 
   "status.title": "Работает",
+  "status.idle": "Ожидание",
 
   "nav.dashboard": "Панель управления",
   "nav.settings": "Настройки",
@@ -18,5 +20,48 @@
   "theme.dark": "Тёмная",
   "theme.system": "Системная",
 
-  "logout.title": "Выйти"
+  "lang.toggle": "Переключить язык",
+  "logout.title": "Выйти",
+
+  "dashboard.stats.total": "Всего заявок",
+  "dashboard.stats.success": "Успешно",
+  "dashboard.stats.skipped": "Пропущено",
+  "dashboard.stats.errors": "Ошибки",
+  "dashboard.stats.session": "Текущая сессия",
+  "dashboard.stats.runs": "За {count} запусков",
+  "dashboard.stats.noDataUK": "Нет данных от УК",
+  "dashboard.stats.waiting": "Ожидание",
+  "dashboard.stats.of": "из {total}",
+
+  "script.start": "Запустить скрипт",
+  "script.stop": "Остановить",
+  "script.pause": "Пауза",
+  "script.resume": "Продолжить",
+  "script.export": "Экспорт",
+  "script.running": "Скрипт выполняется...",
+
+  "tasks.title": "Обработанные заявки",
+  "tasks.empty": "Заявки появятся после запуска скрипта",
+  "tasks.filter.all": "Все",
+  "tasks.filter.success": "Успешно",
+  "tasks.filter.skipped": "Пропущено",
+  "tasks.filter.errors": "Ошибки",
+
+  "logs.title": "Логи выполнения",
+  "logs.clear": "Очистить",
+
+  "config.title": "Настройки скрипта",
+  "config.save": "Сохранить настройки",
+  "config.reset": "Сбросить",
+  "config.saved": "Сохранено!",
+
+  "database.title": "База данных",
+  "database.stats": "Общая статистика",
+  "database.byDistrict": "Статистика по районам",
+  "database.reset": "Сбросить",
+  "database.empty": "Данные появятся после первого запуска",
+  "database.lastRun": "Последний запуск",
+  "database.noData": "Нет данных о запусках",
+
+  "footer.tech": "React 19 • TypeScript • Vite"
 }
