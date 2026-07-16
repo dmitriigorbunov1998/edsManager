@@ -13,10 +13,11 @@ export interface StatsCardProps {
 
 export const StatsCard = ({
   title,
-  /*value, */ icon,
+  /*value, */
+  icon,
   color,
   subtitle,
-  trend,
+  /* trend, */
   onClick,
 }: StatsCardProps) => {
   return (
@@ -29,7 +30,7 @@ export const StatsCard = ({
       <div className="stats-card-glow" />
       <div className="stats-card-top">
         <div className="stats-card-icon">{icon}</div>
-        {trend && <span className="stats-card-trend">{trend}</span>}
+        <span className="stats-card-trend">Trend</span>
       </div>
       <div className="stats-card-value">Value</div>
       <div className="stats-card-title">{title}</div>
