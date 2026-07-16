@@ -3,7 +3,7 @@
    ============================================================ */
 
 .app {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: var(--bg-primary);
@@ -77,4 +77,11 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    justify-items: center;
+  }
 }

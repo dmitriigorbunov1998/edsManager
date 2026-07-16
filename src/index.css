@@ -32,8 +32,6 @@
   --cyan-500: #06b6d4;
 
   /* ===== Semantic Color Tokens (используются в компонентах) ===== */
-  /* Эти переменные НЕ меняются при смене темы — они всегда ссылаются на brand/status цвета */
-
   /* StatsCard tokens */
   --color-blue-border: rgba(59, 130, 246, 0.3);
   --color-blue-glow: rgba(59, 130, 246, 0.4);
