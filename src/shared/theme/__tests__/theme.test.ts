@@ -1,7 +1,7 @@
-import { getThemeIcon, getDefaultTheme, THEME_OPTIONS } from '../theme';
+import { getThemeIcon, getDefaultTheme, THEME_OPTIONS } from '../theme.ts';
 import { Sun, Moon, Monitor } from 'lucide-react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import type { Theme } from '../../types.ts'; // ← Импортируем тип Theme
+import type { Theme } from '../types.ts';
 
 describe('Theme Utils', () => {
   beforeEach(() => {

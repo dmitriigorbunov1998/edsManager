@@ -1,11 +1,11 @@
 import { useRef, useState, useCallback, useMemo } from 'react';
 import { Sun, Moon, Monitor } from 'lucide-react';
-import { useTranslation } from '../i18n';
-import { THEME_OPTIONS } from '../utils/theme.ts';
+import { useTranslation } from '@/i18n';
+import { THEME_OPTIONS } from '@shared/theme/theme.ts';
 import { useTheme } from './useTheme.ts';
 import { useTabs } from './useTabs';
 import { useClickOutside } from './useClickOutside';
-import type { Theme } from '../types';
+import type { Theme } from '@shared/theme/types.ts';
 
 export function useHeader() {
   const { t, lang, setLang } = useTranslation();
